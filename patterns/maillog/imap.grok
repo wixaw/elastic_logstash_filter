@@ -1,0 +1,8 @@
+GOODLOGIN login
+BADLOGIN badlogin
+
+IMAP_GOODLOGIN ^%{GOODLOGIN:syslog_imap_status}: (%{IPORHOST:syslog_imap_host} (\[)?%{IPORHOST:syslog_client_ip}(\])|(\[)?%{IPORHOST:syslog_client_ip}(\])) %{WORD:syslog_imap_user} %{DATA:syslog_imap_type} %{GREEDYDATA:syslog_imap_result-message}
+IMAP_BADLOGIN_1 ^%{BADLOGIN:syslog_imap_status}: (%{IPORHOST:syslog_imap_host} (\[)?%{IPORHOST:syslog_client_ip}(\])|(\[)?%{IPORHOST:syslog_client_ip}(\])) plaintext %{WORD:syslog_imap_user} %{DATA:syslog_imap_type} %{GREEDYDATA:syslog_imap_result-message}
+IMAP_BADLOGIN_2 ^%{BADLOGIN:syslog_imap_status}: (%{IPORHOST:syslog_imap_host} (\[)?%{IPORHOST:syslog_client_ip}(\])|(\[)?%{IPORHOST:syslog_client_ip}(\])) PLAIN (\[)%{GREEDYDATA:syslog_imap_result-message}(\])
+
+IMAP (%{IMAP_GOODLOGIN}|%{IMAP_BADLOGIN_1|%{IMAP_BADLOGIN_2})
