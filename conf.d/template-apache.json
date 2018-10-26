@@ -1,0 +1,16 @@
+{
+  "template": "filebeat-apache-*",
+  "mappings": {
+    "_default_": {
+      "properties": {
+        "apache2.access.geoip.location": {
+          "type": "geo_point"
+        },
+        "@timestamp": {
+          "format": "strict_date_optional_time||epoch_millis",
+          "type": "date"
+        }
+      }
+    }
+  }
+}
