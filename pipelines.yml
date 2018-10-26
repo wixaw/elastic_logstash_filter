@@ -1,0 +1,4 @@
+- pipeline.id: pipeline1_filebeat
+  path.config: "/etc/logstash/conf.d_piped/p1-filebeat.conf"
+  pipeline.workers: 4
+  queue.type: persisted
