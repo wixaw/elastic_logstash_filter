@@ -1,0 +1,4 @@
+LOGIN [.a-zA-Z0-9_-]+
+EMAIL %{LOGIN}@%{IPORHOST}
+
+LMTPUNIX %{WORD:syslog_lmtp_status}: (<?)%{DATA:syslog_lmtp_to}(>?) to mailbox: user.%{LOGIN:syslog_lmtp_user}
